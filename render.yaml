@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: salesbot-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: DATABASE_PATH
+        value: ./database/salesbot.db
+      - key: CHROMA_PERSIST_DIR
+        value: ./vector_store/chroma_db
+      - key: PYTHON_VERSION
+        value: 3.11.0

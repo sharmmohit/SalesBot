@@ -3,6 +3,14 @@ from pydantic import BaseModel
 from typing import Optional
 import sys
 import os
+from contextlib import asynccontextmanager
+from startup import run_startup
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    run_startup()  # runs on startup
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 

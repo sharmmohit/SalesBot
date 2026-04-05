@@ -5,6 +5,9 @@ from vector_store.chroma_manager import ChromaManager
 from agents.rag_pipeline import RAGPipeline
 from agents.sales_agent import SalesAgent
 from config import Config
+from contextlib import asynccontextmanager
+from startup import run_startup
+
 
 def initialize_system():
     print("Initializing SalesBot AI CRM Agent...")
